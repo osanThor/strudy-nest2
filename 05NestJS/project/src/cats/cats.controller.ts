@@ -30,8 +30,8 @@ export class CatsController {
   @ApiOperation({ summary: '고양이 가져오기' })
   @UseGuards(JwtAuthGuard)
   @Get()
-  getCurrentCat(@CurrentUser() cat: ReadOnlyCatDto) {
-    return cat;
+  getCurrentCat(@CurrentUser() cat) {
+    return cat.readOnlyData;
   }
 
   @ApiResponse({ status: 500, description: 'Server Error...' })
