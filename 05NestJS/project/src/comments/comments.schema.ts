@@ -5,6 +5,7 @@ import { SchemaOptions, Document, Types } from 'mongoose';
 
 const options: SchemaOptions = {
   timestamps: true,
+  collection: 'comments',
 };
 
 @Schema(options)
@@ -33,13 +34,13 @@ export class Comments extends Document {
   contents: string;
 
   @ApiProperty({
-    description: '좋야요 수',
+    description: '좋아요 수',
   })
   @Prop({
     default: 0,
   })
   @IsPositive()
-  likeCount: string;
+  likeCount: number;
 
   @ApiProperty({
     description: '작성 대상 (게시글, 정보글)',
