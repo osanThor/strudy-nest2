@@ -41,4 +41,13 @@ export class ChatsGateway
     socket.broadcast.emit('user_connected', username);
     return username;
   }
+
+  @SubscribeMessage('submit_chat')
+  handleSubmitChat(
+    @MessageBody() chat: string,
+    @ConnectedSocket() socket: Socket,
+  ) {
+    // username db에 적제
+    socket.broadcast.emit('new_chat', { chat, username: socket.id });
+  }
 }
